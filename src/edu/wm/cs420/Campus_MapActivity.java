@@ -50,6 +50,8 @@ import com.esri.core.map.Graphic;
 import com.esri.core.symbol.SimpleMarkerSymbol;
 import com.esri.core.tasks.ags.query.Query;
 import com.esri.core.tasks.ags.query.QueryTask;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 
 import edu.wm.cs420.utils.NavigateDialog;
 
@@ -60,6 +62,7 @@ public class Campus_MapActivity extends Activity {
 	AutoCompleteTextView searchBar;
 	
 	LinearLayout searchLayout;
+	Intent toNavigation;
 	
 	LocationService ls;
 	Menu menu;
@@ -118,7 +121,7 @@ public class Campus_MapActivity extends Activity {
 
 		searchLayout = (LinearLayout) this.findViewById(R.id.searchLayout);
 		searchLayout.setVisibility(View.GONE);
-
+		toNavigation = new Intent(this, NavigateActivity.class);
  
         
         searchBar = (AutoCompleteTextView)findViewById(R.id.editText1);
@@ -500,14 +503,37 @@ public void searchBuilding(View v){
 	
 	
 	if(flag){
-		NavigateDialog navDia = new NavigateDialog(name);
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage("Navigate to " + name + "?").setPositiveButton("Yes", navDia)
-		    .setNegativeButton("No", navDia).show();
-		
-		
-
-		
+		//Only navigate if Google Play Services is updated
+		if(GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) 
+				== ConnectionResult.SUCCESS){
+			
+				toNavigation.putExtra("destination", name);
+				toNavigation.putExtra("lng", m_identifiedGraphic.getAttributeValue("Lat").toString());
+				toNavigation.putExtra("lat", m_identifiedGraphic.getAttributeValue("Long").toString());
+				log("LatLng: " + m_identifiedGraphic.getAttributeValue("Lat").toString() + "," + m_identifiedGraphic.getAttributeValue("Long").toString());
+				AlertDialog.Builder alert = new AlertDialog.Builder(this);
+			    alert.setTitle("Navigation");
+			    alert.setCancelable(false);
+			    alert.setMessage("Navigate to " + name + "?");
+			    alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+			        @Override
+			        public void onClick(DialogInterface dialog, int which) {
+			        	
+			    	    startActivity(toNavigation);
+			        }
+			    });
+			    alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+			        @Override
+			        public void onClick(DialogInterface dialog, int which) {
+			       }
+			    });
+			    alert.show();
+		}
+		else{
+			GooglePlayServicesUtil.getErrorDialog(
+					GooglePlayServicesUtil.isGooglePlayServicesAvailable(this), 
+					this, 0);
+		}
 	}
 	else{
 		buildings.clear();
