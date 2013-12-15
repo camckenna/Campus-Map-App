@@ -4,21 +4,14 @@
     android:layout_height="fill_parent" >
  
 <LinearLayout
+    android:id="@+id/searchLayout"
  android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:orientation="horizontal"
 android:gravity="center"
 >
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/navText"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#FFFFFF" />
-
-    <!--  
+	
+    
     <AutoCompleteTextView
         android:id="@+id/editText1"
         android:layout_width="wrap_content"
@@ -29,9 +22,14 @@ android:gravity="center"
         android:inputType="textAutoComplete|textAutoCorrect"
         android:textColor="#FFFFFF" >
 
-        <requestFocus />
     </AutoCompleteTextView>
-   -->
+    
+    <ImageButton
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/ic_action_search"
+    android:onClick="searchBuilding"
+    />
 
 </LinearLayout>
 <com.esri.android.map.MapView 
@@ -40,7 +38,7 @@ android:layout_weight="1"
 android:layout_width="fill_parent" 
 android:layout_height="fill_parent" 
 mapoptions.MapType="topo" 
-mapoptions.ZoomLevel="17" 
+mapoptions.ZoomLevel="16" 
 mapoptions.center="37.27, -76.712"/>
 
 </LinearLayout>
