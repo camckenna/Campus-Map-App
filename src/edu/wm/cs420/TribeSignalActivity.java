@@ -91,7 +91,7 @@ public class TribeSignalActivity extends Activity implements NetworkListener{
 	    
 	    log(username);
 		// Retrieve the map and initial extent from XML layout
-				showLocation = (RelativeLayout) this.findViewById(R.id.showLocation);
+				//showLocation = (RelativeLayout) this.findViewById(R.id.showLocation);
 				status = (TextView)findViewById(R.id.status);
 				toggleLocationButton = (Button)findViewById(R.id.button);
 				findFriends = (Button)findViewById(R.id.nearby);
@@ -104,6 +104,7 @@ public class TribeSignalActivity extends Activity implements NetworkListener{
 				
 				
 				map = (MapView)findViewById(R.id.map);
+				map.setVisibility(View.GONE);
 				mvHelper = new MapViewHelper(map); 
 				// Basic Tile Map [basemap]
 				map.addLayer(new ArcGISTiledMapServiceLayer("" +
@@ -265,20 +266,22 @@ public class TribeSignalActivity extends Activity implements NetworkListener{
 	    // Handle item selection
 	    switch (item.getItemId()) {
 	        case R.id.action_collapse:
-	            collapseSearch();
+	            //collapseSearch();
 	            return true;
 	        case R.id.action_expand:
-	            expandSearch();
+	            //expandSearch();
 	            return true;
 	        case R.id.logout:
 	            logout();
 	            return true;   
+	        case R.id.makeFriends:
+	        	makeFriends();
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }
 	}
 	
-
+/*
 	private void expandSearch() {
 		MenuItem item = menu.findItem(R.id.action_expand);
 		item.setVisible(false);
@@ -299,6 +302,7 @@ public class TribeSignalActivity extends Activity implements NetworkListener{
 		showLocation.setVisibility(View.GONE);
 		
 	}
+*/
 	
 	public void toggleLocation(View v){
 		if(sharingLocation){
@@ -330,16 +334,22 @@ public class TribeSignalActivity extends Activity implements NetworkListener{
 	}
 
 	public void logout(){
-		username = null;
-		password = null;
+		HTTPBasicAuth.getInstance().setUsername(null);
+		HTTPBasicAuth.getInstance().setPassword(null);
     	Intent intent = new Intent(this, LoginActivity.class);
     	intent.putExtra("logout", "true");        
         Toast.makeText(this, "Log out", Toast.LENGTH_SHORT).show();
         startActivity(intent);
 		
 	}
+	
+	public void makeFriends(){
+    	Intent intent = new Intent(this, MakeFriendsActivity.class);  
+        startActivity(intent);
+		
+	}
 	public void sharedLocation(View v){
-		toast("Shared location");
+		/*toast("Shared location");
 		buildings.clearSelection();
 		LocationManager locManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
 		Location loc = locManager
@@ -356,6 +366,12 @@ public class TribeSignalActivity extends Activity implements NetworkListener{
 		HTTPBasicAuth.getInstance().setPassword(password);
 		HTTPRequestTaskExecutor rte = new HTTPRequestTaskExecutor();
 		rte.doPost(url, pos, HTTPBasicAuth.getInstance(), this);
+		*/
+		
+		Intent i = new Intent(this, FriendsActivity.class);
+		i.putExtra("username",HTTPBasicAuth.getInstance().getUsername());
+		i.putExtra("password",HTTPBasicAuth.getInstance().getPassword());
+		startActivity(i);
 	}
 	public void networkRequestCompleted(HTTPRequestResult r) {
 		

@@ -1,5 +1,9 @@
 package edu.wm.cs420;
 
+import java.util.ArrayList;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,12 +18,17 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import edu.wm.cs420.NavigateActivity.FindRouteTask;
 import edu.wm.cs420.utils.GMapV2Direction;
+import edu.wm.cs420.web.HTTPBasicAuth;
+import edu.wm.cs420.web.HTTPRequestResult;
+import edu.wm.cs420.web.HTTPRequestTask.NetworkListener;
+import edu.wm.cs420.web.HTTPRequestTaskExecutor;
 
 import android.graphics.Color;
 import android.location.Criteria;
@@ -31,14 +40,20 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.util.Log;
 import android.view.Menu;
+import android.widget.Toast;
 
-public class FriendsActivity extends Activity implements LocationListener {
+public class FriendsActivity extends Activity implements LocationListener, OnMapClickListener, NetworkListener {
 
 	GoogleMap mMap;
+	String username;
+	String password;
 	    @Override
 	    protected void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        setContentView(R.layout.activity_friends);
+	        
+	        username = getIntent().getStringExtra("username");
+	        password = getIntent().getStringExtra("password");
 	        
 	        int status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getBaseContext());
 			 
@@ -51,7 +66,7 @@ public class FriendsActivity extends Activity implements LocationListener {
 	 
 	        }else { // Google Play Services are available
 	        	
-	        	String result = getIntent().getStringExtra("result");
+	        	
 	 
 	        	mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
 	    		
@@ -66,7 +81,9 @@ public class FriendsActivity extends Activity implements LocationListener {
 	            }
 	            mMap.setMyLocationEnabled(true);
 	            locationManager.requestLocationUpdates(provider, 20000, 0, this);
-	            
+	            mMap.setOnMapClickListener(this);
+	            /*
+	            String result = getIntent().getStringExtra("result");
 	            log("" + result);
 	            
 				JSONObject f;
@@ -93,13 +110,16 @@ public class FriendsActivity extends Activity implements LocationListener {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-	        
-	        
-	        
+	        */
+	        	
 	        }
+	        
 
+	        
 		        
 	    }
+	    
+	    
 	   	 public void onLocationChanged(Location location) {
 	   		 
 		        // Getting latitude of the current location
@@ -147,6 +167,59 @@ public class FriendsActivity extends Activity implements LocationListener {
 		    
 		    public void log(String str){
 				Log.d("Navigate", str);
+			}
+
+
+			@Override
+			public void onMapClick(LatLng point) {
+				String url = "http://murmuring-cliffs-5802.herokuapp.com/location/nearby";
+				ArrayList<NameValuePair> pos = new ArrayList<NameValuePair>();
+				pos.add(new BasicNameValuePair("lat", point.latitude+""));
+				pos.add(new BasicNameValuePair("lng", point.longitude+""));
+				log("Lat:"  + point.latitude+"");
+				HTTPBasicAuth.getInstance().setUsername(username);
+				HTTPBasicAuth.getInstance().setPassword(password);
+				HTTPRequestTaskExecutor rte = new HTTPRequestTaskExecutor();
+				rte.doGetWithParams(url, pos, HTTPBasicAuth.getInstance(), this);
+			}
+
+
+			@Override
+			public void networkRequestCompleted(HTTPRequestResult r) {
+				String result=r.getResult();
+				JSONObject f;
+				try {
+					f = new JSONObject(result);
+				
+				JSONArray json = f.getJSONArray("object");
+				
+				String toastStr;
+				if (json.length() == 1) {
+					toastStr = "You have 1 friend near that location.";
+				} else {
+					toastStr = "You have "+json.length()+" friends near that location.";
+				}
+				Toast.makeText(this, toastStr, Toast.LENGTH_LONG).show();
+				
+				for(int x = 0; x <json.length(); x++){
+					JSONObject obj = json.getJSONObject(x);
+					String name = obj.getString("firstName") +" "+ obj.getString("lastName");
+					double lng = obj.getDouble("longitude");
+					double lat = obj.getDouble("latitude");
+					
+					log(name);
+					log(""+lat);
+					
+					mMap.addMarker(new MarkerOptions()
+	            	.position(new LatLng(lat, lng))
+	            	.title(name)
+	                .draggable(false));
+					
+				}
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 	}
 

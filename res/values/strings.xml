@@ -38,5 +38,6 @@
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
     <string name="title_activity_friends">FriendsActivity</string>
+    <string name="title_activity_make_friends">MakeFriendsActivity</string>
 
 </resources>

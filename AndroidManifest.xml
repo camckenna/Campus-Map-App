@@ -59,7 +59,11 @@
 
         <activity
             android:name="edu.wm.cs420.FriendsActivity"
-            android:label="@string/title_activity_friends" >
+            android:label="Find Friends" >
+        </activity>
+        <activity
+            android:name="edu.wm.cs420.MakeFriendsActivity"
+            android:label="@string/title_activity_make_friends" >
         </activity>
     </application>
 

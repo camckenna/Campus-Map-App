@@ -124,7 +124,7 @@ public class Campus_MapActivity extends Activity {
 		toNavigation = new Intent(this, NavigateActivity.class);
  
         
-        searchBar = (AutoCompleteTextView)findViewById(R.id.editText1);
+        searchBar = (AutoCompleteTextView)findViewById(R.id.connectUsername);
         searchBar.setThreshold(1);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, BUILDINGS);
