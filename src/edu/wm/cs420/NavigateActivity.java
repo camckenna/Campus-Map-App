@@ -3,7 +3,9 @@ package edu.wm.cs420;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.w3c.dom.Document;
 
@@ -70,36 +72,26 @@ public class NavigateActivity extends Activity implements LocationListener
 	        	mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
 	    		
 	    		setUpMapIfNeeded();
-	 
-	            // Enabling MyLocation Layer of Google Map
-	            mMap.setMyLocationEnabled(true);
-	 
-	            // Getting LocationManager object from System Service LOCATION_SERVICE
-	            LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-	 
-	            Criteria criteria = new Criteria();
-	 
-	            // Getting the name of the best provider
-	            String provider = locationManager.getBestProvider(criteria, true);
-	 
-	            // Getting Current Location
-	            Location location = locationManager.getLastKnownLocation(provider);
+	    		LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+	    		Criteria criteria = new Criteria();
+	    		String provider = locationManager.getBestProvider(criteria, true);
+	    		Location location = locationManager.getLastKnownLocation(provider);
 	 
 	            if(location!=null){
 	                onLocationChanged(location);
 	            }
+	            mMap.setMyLocationEnabled(true);
 	            locationManager.requestLocationUpdates(provider, 20000, 0, this);
 	            
 	            double latitude = location.getLatitude();
 		        double longitude = location.getLongitude();
 		 
 		        start = new LatLng(latitude, longitude);
-		        
-				        
-				        log(lat+","+lng);
+				log(lat+","+lng);
 				end = new LatLng(lat,lng);
 			    md = new GMapV2Direction();
-			    new FindRouteTask().execute("");
+			   new FindRouteTask().execute("");
+			    //findDirections(latitude,longitude,lat, lng, GMapV2Direction.MODE_WALKING );
 			            
 		        
 	        }
@@ -137,7 +129,6 @@ public class NavigateActivity extends Activity implements LocationListener
 		        }
 	    }
 	}
-	
 	 public void onLocationChanged(Location location) {
 	 
 	        // Getting latitude of the current location

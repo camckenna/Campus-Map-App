@@ -570,9 +570,17 @@ public void searchBuilding(View v){
 	        case R.id.pdfcampus:
 	            showCampusPDF();
 	            return true;
+	            
+	        case R.id.signal:
+	        	startTribeSignal();
+	            return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }
+	}
+	private void startTribeSignal(){
+		Intent intent = new Intent(this,LoginActivity.class);
+	    startActivity(intent);
 	}
 	
 	private void showCampusPDF() {

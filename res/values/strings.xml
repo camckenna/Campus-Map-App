@@ -20,5 +20,23 @@
     <string name="expand">Expand Search</string>
     <string name="collapse">Collapse Search</string>
     <string name="title_activity_navigate">NavigateActivity</string>
+    <string name="tribeSignal">Tribe Signal</string>
+    <string name="pdf">Campus PDF</string>
+    <string name="title_activity_tribe_signal">Tribe Signal</string>
+    <string name="toggleL">Status: Sharing On</string>
+    <string name="toggleB">Turn Sharing Off</string>
+    <string name="title_activity_login">Log In</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Log In</string>
+    <string name="logout">Logout</string>
+    <string name="error_passwords_not_match">The passwords don\'t match!</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="login_progress_signing_in">Signing in&#8230;</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="title_activity_friends">FriendsActivity</string>
 
 </resources>

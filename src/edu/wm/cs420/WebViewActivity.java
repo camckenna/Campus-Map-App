@@ -6,16 +6,17 @@ import android.webkit.WebView;
 
 public class WebViewActivity extends Activity {
 
+	private String type;
+	private String url;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_webview);
-		
-		WebView myWebView = (WebView) findViewById(R.id.webview);
-		myWebView.loadUrl("http://swem.wm.edu");
-	}
-
-	
+		//type = getIntent().getStringExtra("type");
+		//url = getIntent().getStringExtra("url");
+		WebView myWebView = (WebView) findViewById(R.id.webview);		
+		myWebView.loadUrl("http://www.wm.edu/about/visiting/campusmap/");
+		}		
 
 }

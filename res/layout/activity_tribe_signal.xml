@@ -1,0 +1,60 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    
+    <RelativeLayout
+        android:id="@+id/showLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+        
+        <RelativeLayout
+			android:id="@+id/currentstatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:onClick="toggleLocation"
+            android:text="@string/toggleB" >
+        </Button>
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/button"
+            android:ellipsize="end"
+            android:text="@string/toggleL"
+            android:textAppearance="?android:attr/labelTextSize"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" >
+        </TextView>
+        </RelativeLayout>
+        <Button
+            android:id="@+id/nearby"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/currentstatus"
+            android:onClick="sharedLocation"
+            android:text="Find Nearby Friends" >
+        </Button>
+        
+    </RelativeLayout>
+
+    <com.esri.android.map.MapView
+        android:id="@+id/map"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        mapoptions.MapType="topo"
+        mapoptions.ZoomLevel="18"
+        mapoptions.center="37.27, -76.712" />
+
+
+
+</LinearLayout>

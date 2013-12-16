@@ -15,7 +15,12 @@
 
 <item 
     	android:id="@+id/pdfcampus"
-    	android:text="Show PDF"
+    	android:text="@string/pdf"
          android:showAsAction="never"
-          android:title="pdf" />
+          android:title="@string/pdf" />
+<item 
+    	android:id="@+id/signal"
+    	android:text="@string/tribeSignal"
+         android:showAsAction="never"
+          android:title="@string/tribeSignal" />
 </menu>
