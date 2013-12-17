@@ -216,46 +216,53 @@ containing a value of this type.
         public static final int pin=0x7f020021;
     }
     public static final class id {
-        public static final int NatGeo=0x7f060023;
-        public static final int Ocean_Basemap=0x7f060024;
-        public static final int RelativeLayout1=0x7f060014;
-        public static final int World_Street_Map=0x7f060021;
-        public static final int World_Topo=0x7f060022;
-        public static final int action_collapse=0x7f06001e;
-        public static final int action_expand=0x7f06001d;
-        public static final int action_settings=0x7f060025;
-        public static final int building_names=0x7f060013;
-        public static final int button=0x7f060015;
-        public static final int citycountry=0x7f06001a;
-        public static final int connectUsername=0x7f06000e;
+        public static final int NatGeo=0x7f06002a;
+        public static final int Ocean_Basemap=0x7f06002b;
+        public static final int RelativeLayout1=0x7f06001b;
+        public static final int World_Street_Map=0x7f060028;
+        public static final int World_Topo=0x7f060029;
+        public static final int action_collapse=0x7f060025;
+        public static final int action_expand=0x7f060024;
+        public static final int action_settings=0x7f06002c;
+        public static final int btnRegister=0x7f060018;
+        public static final int building_names=0x7f06001a;
+        public static final int button=0x7f06001c;
+        public static final int citycountry=0x7f060021;
+        public static final int connectUsername=0x7f06000f;
+        public static final int emailhandle=0x7f060014;
+        public static final int firstname=0x7f060015;
         public static final int hybrid=0x7f060004;
-        public static final int identifyCallout=0x7f060019;
+        public static final int identifyCallout=0x7f060020;
+        public static final int lastname=0x7f060016;
+        public static final int link_to_login=0x7f060019;
+        public static final int link_to_register=0x7f06000d;
         public static final int login=0x7f06000b;
         public static final int login_form=0x7f060008;
         public static final int login_status=0x7f060006;
         public static final int login_status_message=0x7f060007;
-        public static final int logout=0x7f060027;
-        public static final int makeFriends=0x7f060026;
-        public static final int makeFriendsError=0x7f060010;
+        public static final int logout=0x7f06002e;
+        public static final int makeFriends=0x7f06002d;
+        public static final int makeFriendsError=0x7f060011;
         public static final int map=0x7f060005;
-        public static final int nearby=0x7f060017;
+        public static final int nearby=0x7f06001e;
         public static final int none=0x7f060000;
         public static final int normal=0x7f060001;
         public static final int password=0x7f06000a;
-        public static final int pdfcampus=0x7f06001f;
-        public static final int population=0x7f06001b;
+        public static final int pdfcampus=0x7f060026;
+        public static final int population=0x7f060022;
         public static final int satellite=0x7f060002;
-        public static final int searchLayout=0x7f06001c;
-        public static final int sendRequest=0x7f06000f;
+        public static final int searchLayout=0x7f060023;
+        public static final int sendRequest=0x7f060010;
         public static final int sign_in_button=0x7f06000c;
-        public static final int signal=0x7f060020;
-        public static final int status=0x7f060016;
+        public static final int signal=0x7f060027;
+        public static final int status=0x7f06001d;
         public static final int terrain=0x7f060003;
-        public static final int textView1=0x7f06000d;
-        public static final int tv_address=0x7f060012;
-        public static final int tv_name=0x7f060011;
+        public static final int textView1=0x7f06000e;
+        public static final int tv_address=0x7f060013;
+        public static final int tv_name=0x7f060012;
         public static final int username=0x7f060009;
-        public static final int webview=0x7f060018;
+        public static final int verifyPassword=0x7f060017;
+        public static final int webview=0x7f06001f;
     }
     public static final class integer {
         public static final int google_play_services_version=0x7f080000;
@@ -266,11 +273,12 @@ containing a value of this type.
         public static final int activity_make_friends=0x7f030002;
         public static final int activity_names=0x7f030003;
         public static final int activity_navigate=0x7f030004;
-        public static final int activity_searchable=0x7f030005;
-        public static final int activity_tribe_signal=0x7f030006;
-        public static final int activity_webview=0x7f030007;
-        public static final int identify_callout_content=0x7f030008;
-        public static final int main=0x7f030009;
+        public static final int activity_register=0x7f030005;
+        public static final int activity_searchable=0x7f030006;
+        public static final int activity_tribe_signal=0x7f030007;
+        public static final int activity_webview=0x7f030008;
+        public static final int identify_callout_content=0x7f030009;
+        public static final int main=0x7f03000a;
     }
     public static final class menu {
         public static final int actions=0x7f0c0000;
@@ -279,8 +287,9 @@ containing a value of this type.
         public static final int login=0x7f0c0003;
         public static final int make_friends=0x7f0c0004;
         public static final int navigate=0x7f0c0005;
-        public static final int searchable=0x7f0c0006;
-        public static final int tribe_signal=0x7f0c0007;
+        public static final int register=0x7f0c0006;
+        public static final int searchable=0x7f0c0007;
+        public static final int tribe_signal=0x7f0c0008;
     }
     public static final class string {
         public static final int NatGeoMenu=0x7f070023;
@@ -296,7 +305,7 @@ containing a value of this type.
         public static final int WORLD_STREET_MAP=0x7f07001d;
         public static final int WORLD_TOPO_MAP=0x7f07001e;
         public static final int action_settings=0x7f070026;
-        public static final int action_sign_in_short=0x7f070037;
+        public static final int action_sign_in_short=0x7f070039;
         public static final int app_name=0x7f07001a;
         /**   Title for notification shown when GooglePlayServices needs to be
         enabled for a application to work. [CHAR LIMIT=70] 
@@ -393,30 +402,39 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f070013;
-        public static final int error_field_required=0x7f07003b;
-        public static final int error_incorrect_password=0x7f07003a;
-        public static final int error_invalid_password=0x7f070039;
-        public static final int error_passwords_not_match=0x7f070035;
+        public static final int email=0x7f070041;
+        public static final int error_field_required=0x7f07003d;
+        public static final int error_incorrect_password=0x7f07003c;
+        public static final int error_invalid_password=0x7f07003b;
+        public static final int error_passwords_not_match=0x7f070037;
+        public static final int existAccount=0x7f070046;
         public static final int expand=0x7f070028;
+        public static final int firstName=0x7f070043;
+        public static final int firstname=0x7f070032;
         public static final int hello_world=0x7f070027;
-        public static final int login=0x7f070033;
-        public static final int login_progress_signing_in=0x7f070038;
-        public static final int logout=0x7f070034;
+        public static final int lastName=0x7f070044;
+        public static final int lastname=0x7f070033;
+        public static final int login=0x7f070035;
+        public static final int login_progress_signing_in=0x7f07003a;
+        public static final int logout=0x7f070036;
         public static final int navText=0x7f07001c;
-        public static final int password=0x7f070032;
+        public static final int password=0x7f070034;
         public static final int pdf=0x7f07002c;
-        public static final int prompt_password=0x7f070036;
+        public static final int prompt_password=0x7f070038;
+        public static final int register=0x7f070045;
         public static final int search_hint=0x7f07001b;
-        public static final int title_activity_friends=0x7f07003c;
+        public static final int title_activity_friends=0x7f07003e;
         public static final int title_activity_login=0x7f070030;
-        public static final int title_activity_make_friends=0x7f07003d;
+        public static final int title_activity_make_friends=0x7f07003f;
         public static final int title_activity_navigate=0x7f07002a;
+        public static final int title_activity_register=0x7f070040;
         public static final int title_activity_searchable=0x7f070025;
         public static final int title_activity_tribe_signal=0x7f07002d;
         public static final int toggleB=0x7f07002f;
         public static final int toggleL=0x7f07002e;
         public static final int tribeSignal=0x7f07002b;
         public static final int username=0x7f070031;
+        public static final int verifyPassword=0x7f070042;
     }
     public static final class style {
         public static final int LoginFormContainer=0x7f0b0000;

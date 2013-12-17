@@ -27,6 +27,8 @@
     <string name="toggleB">Turn Sharing Off</string>
     <string name="title_activity_login">Log In</string>
     <string name="username">Username</string>
+    <string name="firstname">First Name</string>
+    <string name="lastname">Last name</string>
     <string name="password">Password</string>
     <string name="login">Log In</string>
     <string name="logout">Logout</string>
@@ -39,5 +41,15 @@
     <string name="error_field_required">This field is required</string>
     <string name="title_activity_friends">FriendsActivity</string>
     <string name="title_activity_make_friends">MakeFriendsActivity</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    
+    <string name="email">Email</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="verifyPassword">Verify Password</string>
+    <string name="firstName">First Name</string>
+    <string name="lastName">Last Name</string>
+    <string name="register">Register</string>
+        <string name="existAccount">Already registered? Log in here</string>
 
 </resources>

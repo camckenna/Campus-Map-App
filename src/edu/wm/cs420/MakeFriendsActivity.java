@@ -15,6 +15,7 @@ import edu.wm.cs420.web.HTTPRequestTask.NetworkListener;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -44,6 +45,7 @@ public class MakeFriendsActivity extends Activity  implements NetworkListener {
         sendRequestButton.setOnClickListener(new View.OnClickListener() {
         	public void onClick(View v) {
         		String url = "http://murmuring-cliffs-5802.herokuapp.com/user/me/makeRequest";
+        		log(usernameTextView.getText().toString());
         		ArrayList<NameValuePair> pos = new ArrayList<NameValuePair>();
         		pos.add(new BasicNameValuePair("emailHandle", usernameTextView.getText().toString()));
         		HTTPRequestTaskExecutor rte = new HTTPRequestTaskExecutor();
@@ -71,7 +73,8 @@ public class MakeFriendsActivity extends Activity  implements NetworkListener {
 		if (r.getUrl().endsWith("makeRequest")) {
 			try {
 				f = new JSONObject(r.getResult());
-				if (!f.get("status").equals("0")) {
+				log("makeRequest");
+				if (f.getInt("status")!=0) {
 					errors.setText((String)f.get("object"));
 				} else {
 					errors.setText("");
@@ -104,5 +107,9 @@ public class MakeFriendsActivity extends Activity  implements NetworkListener {
 	
 	public void toast(String string){
 		Toast.makeText(this, string, Toast.LENGTH_LONG).show();
+		
+	}
+	public void log(String str){
+		Log.d("MAP_APP", str);
 	}
 }

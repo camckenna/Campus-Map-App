@@ -237,4 +237,9 @@ public class LoginActivity extends Activity implements NetworkListener {
 	public void doToast(String text) {
     	Toast.makeText(this, text, Toast.LENGTH_LONG).show();
     }
+	public void goToRegister(View view){
+		
+		Intent intent = new Intent(this, RegisterActivity.class);
+		startActivity(intent);
+	}
 }

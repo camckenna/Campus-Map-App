@@ -1,6 +1,7 @@
 package edu.wm.cs420;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -21,6 +22,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import edu.wm.cs420.NavigateActivity.FindRouteTask;
@@ -47,11 +49,12 @@ public class FriendsActivity extends Activity implements LocationListener, OnMap
 	GoogleMap mMap;
 	String username;
 	String password;
+	List<Marker> markers;
 	    @Override
 	    protected void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        setContentView(R.layout.activity_friends);
-	        
+	        markers = new ArrayList<Marker>();
 	        username = getIntent().getStringExtra("username");
 	        password = getIntent().getStringExtra("password");
 	        
@@ -186,6 +189,10 @@ public class FriendsActivity extends Activity implements LocationListener, OnMap
 
 			@Override
 			public void networkRequestCompleted(HTTPRequestResult r) {
+				while (markers.size() > 0) {
+					markers.get(0).remove();
+					markers.remove(0);
+				}
 				String result=r.getResult();
 				JSONObject f;
 				try {
@@ -210,10 +217,11 @@ public class FriendsActivity extends Activity implements LocationListener, OnMap
 					log(name);
 					log(""+lat);
 					
-					mMap.addMarker(new MarkerOptions()
+					Marker m = mMap.addMarker(new MarkerOptions()
 	            	.position(new LatLng(lat, lng))
 	            	.title(name)
 	                .draggable(false));
+					markers.add(m);
 					
 				}
 				} catch (JSONException e) {
